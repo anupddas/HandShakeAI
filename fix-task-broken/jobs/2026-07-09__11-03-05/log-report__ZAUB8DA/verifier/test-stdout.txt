@@ -1,0 +1,83 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 4 items
+
+../tests/test_outputs.py FFFF                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_report_exists_at_declared_path ______________________
+
+    def test_report_exists_at_declared_path():
+        """Criterion 1: A JSON report exists at /app/out.json."""
+>       assert REPORT_PATH.exists(), "expected report at /app/out.json"
+E       AssertionError: expected report at /app/out.json
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/out.json').exists
+
+/tests/test_outputs.py:38: AssertionError
+_______________________ test_total_requests_matches_log ________________________
+
+    def test_total_requests_matches_log():
+        """Criterion 2: total_requests equals the number of requests in access.log."""
+        lines, _, _ = _parse_log()
+>       report = _load_report()
+                 ^^^^^^^^^^^^^^
+
+/tests/test_outputs.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_report():
+>       assert REPORT_PATH.exists(), "no report found at /app/out.json"
+E       AssertionError: no report found at /app/out.json
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/out.json').exists
+
+/tests/test_outputs.py:32: AssertionError
+_______________________ test_unique_clients_matches_log ________________________
+
+    def test_unique_clients_matches_log():
+        """Criterion 3: unique_clients equals the number of distinct client IPs in access.log."""
+        _, ips, _ = _parse_log()
+>       report = _load_report()
+                 ^^^^^^^^^^^^^^
+
+/tests/test_outputs.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_report():
+>       assert REPORT_PATH.exists(), "no report found at /app/out.json"
+E       AssertionError: no report found at /app/out.json
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/out.json').exists
+
+/tests/test_outputs.py:32: AssertionError
+__________________________ test_top_path_matches_log ___________________________
+
+    def test_top_path_matches_log():
+        """Criterion 4: top_path equals the most frequently requested path in access.log."""
+        _, _, paths = _parse_log()
+>       report = _load_report()
+                 ^^^^^^^^^^^^^^
+
+/tests/test_outputs.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_report():
+>       assert REPORT_PATH.exists(), "no report found at /app/out.json"
+E       AssertionError: no report found at /app/out.json
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/out.json').exists
+
+/tests/test_outputs.py:32: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_outputs.py::test_report_exists_at_declared_path - Assert...
+FAILED ../tests/test_outputs.py::test_total_requests_matches_log - AssertionE...
+FAILED ../tests/test_outputs.py::test_unique_clients_matches_log - AssertionE...
+FAILED ../tests/test_outputs.py::test_top_path_matches_log - AssertionError: ...
+============================== 4 failed in 0.06s ===============================

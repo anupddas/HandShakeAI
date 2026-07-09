@@ -1,0 +1,23 @@
+Skipping image OS validation for hb__log-report: docker inspect returned 1
+Collecting main service artifacts
+Failed to download artifact '/app/out.json' from service 'main' (best-effort)
+Traceback (most recent call last):
+  File "C:\Users\anupd\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\artifact_handler.py", line 330, in _download_artifact
+    await source_env.service_download_file(
+    ...<3 lines>...
+    )
+  File "C:\Users\anupd\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 721, in service_download_file
+    await self.download_file(source_path, target_path)
+  File "C:\Users\anupd\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 706, in download_file
+    await self._platform.download_file(source_path, target_path)
+  File "C:\Users\anupd\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker_unix.py", line 56, in download_file
+    await self._env._run_docker_compose_command(
+    ...<2 lines>...
+    )
+  File "C:\Users\anupd\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 419, in _run_docker_compose_command
+    raise RuntimeError(
+    ...<5 lines>...
+    )
+RuntimeError: Docker compose command failed for environment log-report. Command: docker compose --project-name log-report__zaub8da --project-directory D:\personal\HandshakeAI\fix-task-broken\log-report\environment -f C:\Users\anupd\AppData\Local\Temp\tmpcrm6pkde\log-report__ZAUB8DA-docker-compose-resources.json -f C:\Users\anupd\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker-compose-build.yaml -f C:\Users\anupd\AppData\Local\Temp\tmpnrdnsm94\docker-compose-mounts.json cp main:/app/out.json jobs\2026-07-09__11-03-05\log-report__ZAUB8DA\artifacts\app\out.json. Return code: 1. Stdout:  log-report__zaub8da-main-1 Copying log-report__zaub8da-main-1:/app/out.json to jobs\2026-07-09__11-03-05\log-report__ZAUB8DA\artifacts\app\out.json
+Error response from daemon: Could not find the file /app/out.json in container 9e881b7b32ccb93a59d6511e2f83b12fdb2aff22fd689288c928deaf497cc45c
+. Stderr: None. 
